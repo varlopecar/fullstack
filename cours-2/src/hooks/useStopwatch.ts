@@ -1,20 +1,31 @@
-import { useEffect, useRef, useState, createContext, useContext } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef, ReactNode } from "react";
 
-const useStopwatch = () => {
+interface StopwatchContextProps {
+  start: () => void;
+  stop: () => void;
+  reset: () => void;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+}
+
+const StopwatchContext = createContext<StopwatchContextProps | undefined>(undefined);
+
+export const StopwatchProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const interval = useRef<ReturnType<typeof setInterval>>();
+  const interval = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (isRunning) {
-      interval.current = setInterval(() => {
+      interval.current = window.setInterval(() => {
         setTime((prevTime) => prevTime + 10);
       }, 10);
     } else {
-      clearInterval(interval.current);
+      window.clearInterval(interval.current);
     }
-    return () => clearInterval(interval.current);
-  }), [isRunning];
+    return () => window.clearInterval(interval.current);
+  }, [isRunning]);
 
   const start = () => {
     setIsRunning(true);
@@ -31,9 +42,24 @@ const useStopwatch = () => {
 
   const minutes = Math.floor(time / 1000 / 60);
   const seconds = Math.floor(time / 1000 - minutes * 60);
-  const miliseconds = time - minutes * 60 * 1000 - seconds * 1000;
+  const milliseconds = time - minutes * 60 * 1000 - seconds * 1000;
 
-  return { start, stop, reset, minutes, seconds, miliseconds };
+  const value = {
+    start,
+    stop,
+    reset,
+    minutes,
+    seconds,
+    milliseconds,
+  };
+
+  return <StopwatchContext.Provider value={value}>{children}</StopwatchContext.Provider>;
 };
 
-export default useStopwatch;
+export const useStopwatch = () => {
+  const context = useContext(StopwatchContext);
+  if (context === undefined) {
+    throw new Error("useStopwatch must be used within a StopwatchProvider");
+  }
+  return context;
+};
