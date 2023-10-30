@@ -1,4 +1,4 @@
-import useStopwatch from "../../hooks/useStopwatch"
+import { useStopwatch } from "../../hooks/useStopwatch"
 
 const CounterButtons = () => {
     const { start, stop, reset } = useStopwatch()
