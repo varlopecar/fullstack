@@ -56,6 +56,7 @@ export const StopwatchProvider: React.FC<{ children: ReactNode }> = ({ children 
   return <StopwatchContext.Provider value={value}>{children}</StopwatchContext.Provider>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useStopwatch = () => {
   const context = useContext(StopwatchContext);
   if (context === undefined) {

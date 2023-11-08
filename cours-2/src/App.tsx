@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Profile from './components/Profile';
 import { User } from './models/User';
 import { useFetch } from 'usehooks-ts'
-import { CounterProvider } from './components/Counter/CounterProvider';
+import { StopwatchProvider } from './contexts/StopwatchContextProvider';
 
 const App = () => {
   const { data: user, error } = useFetch<User>('https://jsonplaceholder.typicode.com/users/1')
@@ -18,7 +18,7 @@ const App = () => {
   }, [user])
 
   return (
-    <>
+    <StopwatchProvider>
       <Header title="Cours React" />
 
       <main>
@@ -27,7 +27,7 @@ const App = () => {
         {user && <Profile user={user} />}
         <Counter />
       </main>
-    </>
+    </StopwatchProvider>
   );
 }
 
