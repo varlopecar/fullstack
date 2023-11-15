@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
 import usePosts from "../../hooks/usePosts";
-import { useEffect } from "react";
 
 const HomePage = () => {
-    const { posts, fetchPosts, isLoading, error } = usePosts();
-
-    useEffect(() => {
-        fetchPosts();
-    }, []);
+    const { posts, isLoading, error } = usePosts();
 
     if (isLoading) {
         return <div>Loading...</div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPosts } from "../services/getPosts";
 import Post from "../models/Post";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,11 @@ const usePosts = () => {
     }
   };
 
-  return { posts, isLoading, fetchPosts, error };
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  return { posts, isLoading, error };
 };
 
 export default usePosts;

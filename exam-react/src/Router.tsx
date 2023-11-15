@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { PostContextProvider } from './hooks/usePostContext';
 import PageTemplate from './components/PageTemplate';
 import HomePage from './components/HomePage';
 import PageNotFound from './components/PageNotFound';
 import PostPage from './components/PostPage';
-import { PostContextProvider } from './contexts/PostContextProvider';
+import PostDetailPage from './components/PostPage/PostDetail';
+import PostOwnerPage from './components/PostPage/PostOwner';
 
 const Router = () => {
     const browserRouter = createBrowserRouter([
@@ -21,15 +23,18 @@ const Router = () => {
                 },
                 {
                     path: 'posts/:postId',
-                    element: <PostContextProvider><PostPage /></PostContextProvider>,
+                    element:
+                        <PostContextProvider>
+                            <PostPage />
+                        </PostContextProvider>,
                     children: [
                         {
                             path: 'detail',
-                            element: <div>Details</div>
+                            element: <PostDetailPage />
                         },
                         {
                             path: 'owner/:ownerId',
-                            element: <div>Owner</div>
+                            element: <PostOwnerPage />
                         }
                     ]
                 }

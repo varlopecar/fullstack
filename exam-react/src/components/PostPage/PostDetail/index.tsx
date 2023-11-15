@@ -1,14 +1,14 @@
-import Post from "../../../models/Post";
+import { usePostContext } from "../../../hooks/usePostContext";
+import PostCard from "./PostCard";
 
-interface PostDetailProps {
-    post: Post;
-}
+const PostDetailPage = () => {
+    const { post } = usePostContext();
 
-const PostDetailPage = ({ post }: PostDetailProps) => {
+    console.log('post', post);
+
     return (
         <div>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
+            <PostCard post={post} />
         </div>
     );
 };
