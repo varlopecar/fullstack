@@ -1,12 +1,15 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const PageTemplate = () => {
-    const navigate = useNavigate();
-
     return (
         <>
-            <header>
-                <h1><a href="" onClick={() => navigate("/")}>React Typescript Exam</a></h1>
+            <header style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <h1>
+                    Exam Typescript React
+                </h1>
+                <nav>
+                    <Link to="/">Home</Link>
+                </nav>
             </header>
             <main>
                 <Outlet />

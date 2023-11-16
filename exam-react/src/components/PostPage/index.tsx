@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const PostPage = () => {
@@ -6,8 +6,9 @@ const PostPage = () => {
 
     return (
         <>
-            <Link to={`/detail`}>Detail</Link>
-            <Link to={`/owner/${postId}`}>Owner</Link>
+            <Link to={`detail`}>Detail</Link>
+            <Link to={`owner/${postId}`}>Owner</Link>
+            <Outlet />
         </>
     );
 };

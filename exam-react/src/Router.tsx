@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { PostContextProvider } from './hooks/usePostContext';
 import PageTemplate from './components/PageTemplate';
 import HomePage from './components/HomePage';
@@ -28,6 +28,10 @@ const Router = () => {
                             <PostPage />
                         </PostContextProvider>,
                     children: [
+                        {
+                            path: '',
+                            element: <Navigate to="detail" replace={true} />
+                        },
                         {
                             path: 'detail',
                             element: <PostDetailPage />
