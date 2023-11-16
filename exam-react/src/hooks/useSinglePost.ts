@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getPost } from "../services/getPosts";
-import Post from "../models/Post";
 import { useNavigate } from "react-router-dom";
+import { usePostContext } from "./usePostContext";
 
 export function useSinglePost(id: string | undefined) {
-  const [post, setPost] = useState<Post | undefined>(undefined);
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const { setPost } = usePostContext();
 
   const fetchPost = async () => {
     try {
       setIsLoading(true);
       const post = await getPost(id);
+      console.log(post);
       setPost(post);
     } catch (error) {
       navigate("/not-found");
@@ -22,9 +23,5 @@ export function useSinglePost(id: string | undefined) {
     }
   };
 
-  useEffect(() => {
-    fetchPost();
-  }, []);
-
-  return { post, isLoading, error };
+  return { isLoading, error, fetchPost };
 }

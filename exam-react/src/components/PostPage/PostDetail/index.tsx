@@ -1,10 +1,17 @@
+import { useEffect } from "react";
+import PostCard from "../../../components/PostPage/PostDetail/PostCard";
 import { usePostContext } from "../../../hooks/usePostContext";
-import PostCard from "./PostCard";
+import { useSinglePost } from "../../../hooks/useSinglePost";
+import { useParams } from "react-router-dom";
 
 const PostDetailPage = () => {
     const { post } = usePostContext();
+    const { postId } = useParams<{ postId: string }>();
+    const { fetchPost } = useSinglePost(postId);
 
-    console.log('post', post);
+    useEffect(() => {
+        fetchPost();
+    }, []);
 
     return (
         <div>
