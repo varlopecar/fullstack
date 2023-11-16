@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 const PageTemplate = () => {
     return (
         <>
-            <header style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <header style={{ display: 'flex', justifyContent: 'flex-start', gap: '1rem', alignItems: 'baseline' }}>
                 <h1>
                     Exam Typescript React
                 </h1>

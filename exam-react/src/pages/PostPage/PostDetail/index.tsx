@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import PostCard from "../../../components/PostPage/PostDetail/PostCard";
+import PostCard from "../../../components/PostCard";
 import { usePostContext } from "../../../hooks/usePostContext";
 import { useSinglePost } from "../../../hooks/useSinglePost";
 import { useParams } from "react-router-dom";

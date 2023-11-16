@@ -13,7 +13,6 @@ export function useSinglePost(id: string | undefined) {
     try {
       setIsLoading(true);
       const post = await getPost(id);
-      console.log(post);
       setPost(post);
     } catch (error) {
       navigate("/not-found");

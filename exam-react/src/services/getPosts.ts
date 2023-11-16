@@ -17,7 +17,6 @@ export const getPost = async (id: string | undefined) => {
   try {
     const response = await fetch(`${BASE_URL}/posts/${id}`);
     const post: Post = await response.json();
-    console.log(post);
 
     return post;
   } catch (error) {

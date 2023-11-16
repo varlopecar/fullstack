@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import { PostContextProvider } from './hooks/usePostContext';
-import PageTemplate from './components/PageTemplate';
-import HomePage from './components/HomePage';
-import PageNotFound from './components/PageNotFound';
-import PostPage from './components/PostPage';
-import PostDetailPage from './components/PostPage/PostDetail';
-import PostOwnerPage from './components/PostPage/PostOwner';
+import { PostContextProvider } from '../hooks/usePostContext';
+import PageTemplate from '../components/PageTemplate';
+import HomePage from '../pages/HomePage';
+import PageNotFound from '../pages/PageNotFound';
+import PostPage from '../pages/PostPage';
+import PostDetailPage from '../pages/PostPage/PostDetail';
+import PostOwnerPage from '../pages/PostPage/PostOwner';
 
 const Router = () => {
     const browserRouter = createBrowserRouter([
